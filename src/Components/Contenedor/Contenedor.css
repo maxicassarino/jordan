@@ -1,0 +1,12 @@
+.Seccion {
+    height: auto;
+    padding: 50px;
+}
+
+.Seccion h4 {
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+

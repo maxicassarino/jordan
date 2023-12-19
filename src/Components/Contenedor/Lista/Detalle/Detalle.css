@@ -1,0 +1,30 @@
+.Detalle {
+    height: 82.5vh;
+}
+
+h2 {
+    padding: 50px;
+    text-align: center;
+}
+
+.flex {
+    padding: 0px 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.imagen {
+    width: 400px;
+}
+
+.informacion {
+    width: 40vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: justify;
+}
+
