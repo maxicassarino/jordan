@@ -12,6 +12,7 @@ h2 {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .imagen {
@@ -20,10 +21,10 @@ h2 {
 
 .informacion {
     width: 40vw;
-    height: 50vh;
+    height: 45vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     text-align: justify;
 }

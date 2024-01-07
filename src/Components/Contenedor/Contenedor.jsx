@@ -2,9 +2,20 @@ import { useState , useEffect} from "react";
 import { useParams } from "react-router-dom";
 import "./Contenedor.css";
 import ListaProductos from "./Lista/ListaProductos";
+import { DarkContext } from "../../App";
+import { useContext } from "react";
 
 
 function Contenedor() {
+
+    const { darkMode } = useContext(DarkContext)
+
+    const styles = {
+        container: {
+            backgroundColor: darkMode ? "black" : "white",
+            color: darkMode ? "white" : "black",
+        }
+    };
 
     const [zapatillas, setZapatillas] = useState([]);
     let {idCategory} = useParams();
@@ -54,7 +65,7 @@ function Contenedor() {
     }
 
     return (
-        <div className="Seccion" id="scroll">
+        <div className="Seccion" id="scroll" style={styles.container}>
             <h4>{titulo}</h4>
             <ListaProductos zapatillas={zapatillas}/>
         </div>

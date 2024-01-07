@@ -2,9 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Detalle.css";
 import Contador from "./Contador/Contador";
+import { DarkContext } from "../../../../App";
+import { useContext } from "react";
 
 
 function Detalle() {
+
+    const { darkMode } = useContext(DarkContext)
+
+    const styles = {
+        container: {
+            backgroundColor: darkMode ? "black" : "white",
+            color: darkMode ? "white" : "black",
+        }
+    };
+
     const [zapatilla, setZapatilla] = useState(null);
     const { idItem } = useParams();
 
@@ -18,6 +30,8 @@ function Detalle() {
             const zapatillaDetalle = data.sneakers.find(
             (z) => z.id === parseInt(idItem)
             );
+            // Generar stock 
+            zapatillaDetalle.stock = Math.floor(Math.random() * (7 - 2 + 1) + 2);
             setZapatilla(zapatillaDetalle);
         })
         .catch((error) => {
@@ -54,13 +68,13 @@ function Detalle() {
     }
 
     return (
-        <div className="Detalle" id="scroll">
+        <div className="Detalle" id="scroll" style={styles.container}>
             <h2>{zapatilla.name}</h2>
             <div className="flex">
                 <img src={zapatilla.grid_picture_url} alt={zapatilla.name} className="imagen"/>
                 <div className="informacion">
                     <p>{sacarEtiquetas(zapatilla.story_html) || generarParrafo()}</p>
-                    <Contador onAdd={onAdd}/>
+                    <Contador onAdd={onAdd} stock={zapatilla.stock}/>
                 </div>
             </div>
         </div>

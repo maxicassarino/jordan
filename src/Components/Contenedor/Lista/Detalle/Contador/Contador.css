@@ -1,13 +1,37 @@
-.contador {
-    width: 10vw;
-    display: flex;
-    justify-content: space-between;
-}
-
 .carrito {
-    height: 12vh;
+    width: 14vw;
+    height: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.contador {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#Numero {
+    font-size: 20px;
+}
+
+.botonesContador {
+    padding: 5px 15px;
+    color: white;
+    background-color: rgb(82, 4, 4);
+    border: 2px solid black;
+}
+
+.botonesContador:hover {
+    color: rgb(82, 4, 4);
+    background-color: white;
+    border: 2px solid rgb(82, 4, 4);
+    transition: .5s;
+}
+
+#agregar {
+    width: 100%;
 }

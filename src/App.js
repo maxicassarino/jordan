@@ -5,10 +5,16 @@ import Portada from './Components/Secciones/Portada';
 import Contenedor from './Components/Contenedor/Contenedor';
 import Detalle from './Components/Contenedor/Lista/Detalle/Detalle';
 import Footer from './Components/Footer/Footer';
+import { createContext, useState } from 'react';
+
+export const DarkContext = createContext(null)
 
 function App() {
+
+  const [darkMode, setDarkMode] = useState(false)
+
   return (
-    <>
+    <DarkContext.Provider value={{ darkMode, setDarkMode}}>
       <BrowserRouter>
         <NavBar/>
         <Portada/>
@@ -19,7 +25,7 @@ function App() {
         </Routes>
         <Footer/>
       </BrowserRouter>
-    </>
+    </DarkContext.Provider>
   );
 }
 

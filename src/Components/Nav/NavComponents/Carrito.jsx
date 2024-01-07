@@ -1,9 +1,9 @@
 
 
-function Carrito({cant}) {
+function Carrito() {
     return (
         <div>
-            Carrito: {cant}
+            <i class="bi bi-bag-check"></i>
         </div>
 );
 }

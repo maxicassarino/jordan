@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./Contador.css";
 
 
-function Contador({onAdd}) {
+function Contador({onAdd, stock}) {
 
     // Count
 
-    let maxCount = 5;
+    let maxCount = stock;
 
     const [Count, setCount] = useState(1);
 
@@ -25,11 +25,11 @@ function Contador({onAdd}) {
     return (
         <div className="carrito">
             <div className="contador">
-                <button onClick={restarCount}>-</button>
-                <span>{Count}</span>
-                <button onClick={aumentarCount}>+</button>
+                <button className="botonesContador" onClick={restarCount}>-</button>
+                <span id="Numero">{Count}</span>
+                <button className="botonesContador" onClick={aumentarCount}>+</button>
             </div>
-            <button onClick={() => onAdd(Count)}>Agregar</button>
+            <button className="botonesContador" id="agregar" onClick={() => onAdd(Count)}>Agregar</button>
         </div>
 );
 }
