@@ -4,9 +4,12 @@ import "./Contenedor.css";
 import ListaProductos from "./Lista/ListaProductos";
 import { DarkContext } from "../../App";
 import { useContext } from "react";
+import {collection, getDocs, getFirestore} from 'firebase/firestore'
 
 
 function Contenedor() {
+
+    // DarkMode
 
     const { darkMode } = useContext(DarkContext)
 
@@ -17,44 +20,38 @@ function Contenedor() {
         }
     };
 
-    const [zapatillas, setZapatillas] = useState([]);
     let {idCategory} = useParams();
 
+
+    // Firebase
+
+    const [zapatillas, setZapatillas] = useState([]);
+
     useEffect(() => {
-        fetch('https://raw.githubusercontent.com/Stupidism/goat-sneakers/master/api.json')
-            .then(response => response.json())
-            .then(data => {
-                // Filtrar modelos Air Jordan menores que 5
-                const modelosAirJordan = data.sneakers.filter(zapatilla => {
-                    const match = zapatilla.name.match(/\d+/);
-                    const numero = match ? parseInt(match[0]) : 0;
-                    if (zapatilla.retail_price_cents == null) {
-                        zapatilla.retail_price_cents = 14000
-                    }
-                    return zapatilla.name.includes('Jordan') && numero <= 5;
-                });
-                // Extraer el número del nombre y ordenar
-                const modelosOrdenados = modelosAirJordan.sort((a, b) => {
-                    const numeroA = parseInt(a.name.match(/\d+/)[0]);
-                    const numeroB = parseInt(b.name.match(/\d+/)[0]);
-                    return numeroA - numeroB;
-                });
-                // Filtros
-                if (idCategory === "sale") {
-                    let sale = modelosOrdenados.filter((item) => item.retail_price_cents <= 15000);
-                    setZapatillas(sale);
-                } else if (idCategory === "new") {
-                    let nuevos = modelosOrdenados.filter((item) => (item.retail_price_cents >= 17000 && item.retail_price_cents < 20000) || (item.retail_price_cents === 20000 && item.name.includes("5")) || item.retail_price_cents === 22000);
-                    setZapatillas(nuevos);
-                } else {
-                    setZapatillas(modelosOrdenados);
-                }
-            })
-            .catch(error => {
-                console.error('Error en la solicitud:', error);
-            });
-    
+
+        const cargarProductos = async () => {
+
+            const db = getFirestore();
+            const coleccion = collection(db, 'productos');  
+
+            const res = await getDocs(coleccion);
+            const array = res.docs.map((item) => ({ ...item.data(), id: item.id }));
+
+            if (idCategory === "sale") {
+                let sale = array.filter((item) => item.categoria == "sale");
+                setZapatillas(sale);
+            } else if (idCategory === "new") {
+                let nuevos = array.filter((item) => (item.categoria == "new"));
+                setZapatillas(nuevos);
+            } else {
+                setZapatillas(array);
+            }
+        }
+
+        cargarProductos();
+        
     }, [idCategory]);
+
 
     // Titulo dinámico 
     let titulo = "Productos";

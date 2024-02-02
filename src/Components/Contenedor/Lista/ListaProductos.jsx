@@ -19,9 +19,9 @@ function ListaProductos({zapatillas}) {
             {zapatillas.map(zapatilla => (
                 <div key={zapatilla.id} className="zapatilla">
                     <Link to={`/item/${zapatilla.id}`} className="textDecoration" style={styles.textos}>
-                        <img src={zapatilla.grid_picture_url} alt={zapatilla.name} className="Imagen"/>
-                        <h5 className="subrayado">{zapatilla.silhouette}</h5>
-                        <p>${zapatilla.retail_price_cents}</p>
+                        <img src={zapatilla.imagen} alt={zapatilla.nombre} className="Imagen"/>
+                        <h5 className="subrayado">{zapatilla.nombre}</h5>
+                        <p>${zapatilla.precio}</p>
                     </Link>
                 </div>
             ))}
