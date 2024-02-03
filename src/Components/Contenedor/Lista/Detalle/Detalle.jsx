@@ -40,14 +40,12 @@ function Detalle() {
         cargarZapatilla();
     }, [idItem]);
 
-    function onAdd(count) {
-        alert("Quiero agregar " + count + " " + zapatilla.nombre + " al carrito.");
-    }
 
     // Condición para manejar el caso en que zapatilla es null
     if (!zapatilla) {
         return <div>Waiting...</div>;
     }
+
 
     return (
         <div className="Detalle" id="scroll" style={styles.container}>
@@ -56,7 +54,7 @@ function Detalle() {
                 <img src={zapatilla.imagen} alt={zapatilla.nombre} className="imagen" />
                 <div className="informacion">
                     <p>{zapatilla.descripcion}</p>
-                    <Contador onAdd={onAdd} stock={zapatilla.stock} />
+                    <Contador zapatilla={zapatilla} stock={zapatilla.stock} />
                 </div>
             </div>
         </div>

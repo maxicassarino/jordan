@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "./NavBar.css";
-import Carrito from "./NavComponents/Carrito";
 import { DarkContext } from "../../App";
 import { useContext } from "react";
 
@@ -35,7 +34,11 @@ function NavBar() {
                 <Link to={"/category/new"} className="subrayadoNav" onClick={scroll} style={styles.textos}>What's New</Link>
                 <Link to={"/"} className="subrayadoNav" onClick={scroll} style={styles.textos}>Shop</Link>
                 <i class="bi bi-moon" onClick={() => setDarkMode(!darkMode)}></i>
-                <Carrito/>
+                <Link to="/cart" style={{ color: "inherit" }}>
+                    <div>
+                        <i className="bi bi-bag-check"></i>
+                    </div>
+                </Link>
             </ul>
         </div>
 );

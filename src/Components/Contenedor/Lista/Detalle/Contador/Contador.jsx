@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Contador.css";
+import { DarkContext } from "../../../../../App";
 
 
-function Contador({onAdd, stock}) {
+function Contador({zapatilla, stock}) {
+
+    const { agregarAlCarrito } = useContext(DarkContext);
 
     // Count
 
     let maxCount = stock;
 
     const [Count, setCount] = useState(1);
+
+    const [isAdded, setIsAdded] = useState(false);
 
     function aumentarCount() {
         if (Count < maxCount) {
@@ -22,6 +27,11 @@ function Contador({onAdd, stock}) {
         }
     } 
 
+    const handleAgregarAlCarrito = () => {
+        agregarAlCarrito({ ...zapatilla, cantidad: Count });
+        setIsAdded(true);
+    };
+
     return (
         <div className="carrito">
             <div className="contador">
@@ -29,7 +39,7 @@ function Contador({onAdd, stock}) {
                 <span id="Numero">{Count}</span>
                 <button className="botonesContador" onClick={aumentarCount}>+</button>
             </div>
-            <button className="botonesContador" id="agregar" onClick={() => onAdd(Count)}>Agregar</button>
+            <button className="botonesContador" id="agregar" onClick={handleAgregarAlCarrito} disabled={isAdded}>{isAdded ? "Listo" : "Agregar"}</button>
         </div>
 );
 }
