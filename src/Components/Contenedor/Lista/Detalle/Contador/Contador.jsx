@@ -15,9 +15,9 @@ function Contador({zapatilla, stock}) {
 
     // Count
 
-    let maxCount = stock;
-
     const [Count, setCount] = useState(1);
+
+    const [Stock, setStock] = useState(stock)
 
     const [botonListo, setBotonListo] = useState(false);
 
@@ -26,18 +26,28 @@ function Contador({zapatilla, stock}) {
         const productoEnCarrito = carrito.find((producto) => producto.id === zapatilla.id);
     
         if (productoEnCarrito) {
-          // Si el producto ya está en el carrito, actualiza la cantidad
+            const actualizarStock = Stock - Count;
+            // Si el producto ya está en el carrito, actualiza la cantidad
             const nuevoCarrito = carrito.map((producto) =>
-                producto.id === zapatilla.id ? { ...producto, cantidad: producto.cantidad + Count } : producto
+            producto.id === zapatilla.id ? { ...producto, cantidad: producto.cantidad + Count } : producto
             );
+            setStock(actualizarStock);
             setCarrito(nuevoCarrito);
+            if (actualizarStock >= 1) {
+                setCount(1);
+            } else {
+                setCount(0);
+            }
         } else {
-          // Si el producto no está en el carrito, agrégalo
+            const nuevoStock = Stock - Count;
             setCarrito([...carrito, { ...zapatilla, cantidad: Count }]);
+            setStock(nuevoStock);
+            if (nuevoStock >= 1) {
+                setCount(1);
+            } else {
+                setCount(0);
+            }
         }
-    
-        // Reinicia la cantidad a 1 después de agregar al carrito
-        setCount(1);
 
         
         // Después de 5 segundos, vuelve a "Agregar"
@@ -49,7 +59,7 @@ function Contador({zapatilla, stock}) {
 
 
     function aumentarCount() {
-        if (Count < maxCount) {
+        if (Count < Stock) {
             setCount(Count+1)
         }
     } 

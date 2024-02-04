@@ -5,6 +5,7 @@ import Portada from './Components/Secciones/Portada';
 import Contenedor from './Components/Contenedor/Contenedor';
 import Detalle from './Components/Contenedor/Lista/Detalle/Detalle';
 import Carrito from './Components/Nav/NavComponents/Carrito';
+import Checkout from './Components/Nav/NavComponents/Checkout/Checkout';
 import Footer from './Components/Footer/Footer';
 import { createContext, useState } from 'react';
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/category/:idCategory" element={<Contenedor/>}/>
           <Route path="/item/:idItem" element={<Detalle/>}/>
           <Route path="/cart" element={<Carrito />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer/>
       </BrowserRouter>
