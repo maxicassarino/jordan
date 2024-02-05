@@ -28,13 +28,13 @@ function NavBar() {
 
     return (
         <div id="NavBar" style={styles.container}>
-            <Link to={"/"} id="Logo" style={styles.textos}>MICHAEL JORDAN</Link>
+            <Link to={"/jordan"} id="Logo" style={styles.textos}>MICHAEL JORDAN</Link>
             <ul id="Menu">
-                <Link to={"/category/sale"} className="subrayadoNav" onClick={scroll} style={styles.textos} >Sale</Link>
-                <Link to={"/category/new"} className="subrayadoNav" onClick={scroll} style={styles.textos}>What's New</Link>
-                <Link to={"/"} className="subrayadoNav" onClick={scroll} style={styles.textos}>Shop</Link>
+                <Link to={"/jordan/category/sale"} className="subrayadoNav" onClick={scroll} style={styles.textos} >Sale</Link>
+                <Link to={"/jordan/category/new"} className="subrayadoNav" onClick={scroll} style={styles.textos}>What's New</Link>
+                <Link to={"/jordan"} className="subrayadoNav" onClick={scroll} style={styles.textos}>Shop</Link>
                 <i class="bi bi-moon" onClick={() => setDarkMode(!darkMode)}></i>
-                <Link to="/cart" style={{ color: "inherit" }}>
+                <Link to="/jordan/cart" style={{ color: "inherit" }}>
                     <div>
                         <i className="bi bi-bag-check"></i>
                     </div>

@@ -18,7 +18,7 @@ function ListaProductos({zapatillas}) {
         <div id="Lista">
             {zapatillas.map(zapatilla => (
                 <div key={zapatilla.id} className="zapatilla">
-                    <Link to={`/item/${zapatilla.id}`} className="textDecoration" style={styles.textos}>
+                    <Link to={`/jordan/item/${zapatilla.id}`} className="textDecoration" style={styles.textos}>
                         <img src={zapatilla.imagen} alt={zapatilla.nombre} className="Imagen"/>
                         <h5 className="subrayado">{zapatilla.nombre}</h5>
                         <p>${zapatilla.precio}</p>

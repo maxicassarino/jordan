@@ -30,11 +30,11 @@ function App() {
         <NavBar/>
         <Portada/>
         <Routes>
-          <Route path="/" element={<Contenedor/>}/>
-          <Route path="/category/:idCategory" element={<Contenedor/>}/>
-          <Route path="/item/:idItem" element={<Detalle/>}/>
-          <Route path="/cart" element={<Carrito />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/jordan" element={<Contenedor/>}/>
+          <Route path="/jordan/category/:idCategory" element={<Contenedor/>}/>
+          <Route path="/jordan/item/:idItem" element={<Detalle/>}/>
+          <Route path="/jordan/cart" element={<Carrito />} />
+          <Route path="/jordan/checkout" element={<Checkout />} />
         </Routes>
         <Footer/>
       </BrowserRouter>

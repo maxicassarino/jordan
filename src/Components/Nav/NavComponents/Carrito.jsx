@@ -35,7 +35,7 @@ function Carrito() {
                     </div>
                 ))}
             </ul>
-            <Link to="/checkout">
+            <Link to="/jordan/checkout">
                 <center>
                     <button className="botonesContador">Finalizar compra</button>
                 </center>
